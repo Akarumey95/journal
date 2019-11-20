@@ -39,19 +39,22 @@ $(document).ready(function () {
                     var journal__poster = document.createElement('div');
                     var journal__overlay = document.createElement('div');
                     var journal__action = document.createElement('div');
+                    var journal__name = document.createElement('h3');
 
                     journal__item.setAttribute('class', 'journal__item');
                     journal__poster.setAttribute('class', 'journal__item--poster');
                     journal__poster.setAttribute('style', "background-image: url('" + item.poster_path + "')");
                     journal__overlay.setAttribute('class', 'journal__item--overlay');
                     journal__action.setAttribute('class', 'journal__item--action');
+                    journal__name.setAttribute('style', "text-align: center");
+                    journal__name.append(item.name);
 
                     var download = document.createElement('a');
-                    var read = document.createElement('a');
-
                     download.setAttribute('href', '#');
                     download.setAttribute('download', item.name);
                     download.text = "Download";
+
+                    var read = document.createElement('a');
                     read.setAttribute('href', "/show/" + item.id);
                     read.text = 'Read';
 
@@ -61,7 +64,7 @@ $(document).ready(function () {
                     );
                     journal__overlay.append(journal__action);
                     journal__poster.append(journal__overlay);
-                    journal__item.append(journal__poster);
+                    journal__item.append(journal__poster, journal__name);
 
                     home__template.append(journal__item);
                 });
