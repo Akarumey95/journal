@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="/" class="home__link">Home</a>
-
-    <iframe style="width:100%; height: calc(100vh - 10px)" src="{{asset($file_path . $data->journal_path)}}"></iframe>
+    <div id="journal__template" style="height: 100vh">
+        <a href="/" class="home__link">Home</a>
+    </div>
 @endsection

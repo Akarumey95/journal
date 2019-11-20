@@ -14,6 +14,8 @@
 Route::get('/', 'JournalsController@index');
 Route::get('/show/{id}', 'JournalsController@show')->name('show');
 
+Route::get('/api/getJournal/', 'JournalsController@getJournal');
+Route::get('/api/getJournal/{id}', 'JournalsController@getJournal');
 
 Route::get('/admin', 'JournalsController@admin');
 Route::post('/admin/journal/save', 'JournalsController@create');

@@ -34,6 +34,40 @@ class JournalsController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param null $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getJournal($id=null)
+    {
+        $full_path = config('app.url', 'http://localhost:3000') . '/storage/app/public/';
+
+        try{
+            if($id == null){
+                $data = journals::all();
+            }else{
+                $data = journals::where('id', $id)->get();
+            }
+        }catch (\mysqli_sql_exception $e){
+            $msg = ['status' => 400, 'msg' => $e];
+        }
+
+        if(!empty($data)){
+            foreach ($data as $item){
+                $item->journal_path = $full_path . $item->journal_path;
+                $item->poster_path = $full_path . $item->poster_path;
+            }
+
+            $msg = ['status' => 200, 'data' => $data];
+        }
+
+        echo json_encode($msg);
+        //return json_encode($msg);
+    }
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param Request $request
